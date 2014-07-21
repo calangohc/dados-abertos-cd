@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<!-- 
+  Simula o funcionamento de um servo motor em uma página web.
+  Licença: Apache 2.0
+-------------------------------------------------------------------
+ * Copyright 2014 Otavio Carneiro (http://www.carneiro.blog.br)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * ========================================================= */
+-->
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>Simulador de Servo</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  </head>
+<body>
+	<div class="container">
+	<h1>Servo em <span id="valor">90</span> graus</h1>
+	<svg width="600" height="300" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+	 <g>
+	  <title>Triângulo</title>
+	  <polygon stroke-width="5" stroke="#000000" points="374,122 276,178 276,65 374,122" fill="green" id="triangulo"/>
+	 </g>
+	</svg>
+	<br/>
+	<button class="btn btn-lg btn-primary" onclick="teste()">Teste</button>
+	</div>
+	<script>
+		var pontos = ["374,122", "276,178", "276,65"];
+		
+		function teste() {
+			mudaPonto('200,50');
+		}
+		
+		//altera o terceiro valor do arrray para o valor informado
+		function mudaPonto(pontoNovo) {
+			pontos[2] = pontoNovo;
+		    document.getElementById('triangulo').setAttribute('points', montaString(pontos));
+		}
+		
+		//concatena as coordenadas do triangulo para incluir no atributo "points"
+		function montaString(p) {
+			return "" + p[0] + " " + p[1] + " " + p[2] + " " + p[0]
+		}
+	</script>
+</body>
+</html>
