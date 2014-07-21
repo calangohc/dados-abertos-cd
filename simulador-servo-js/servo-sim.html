@@ -27,17 +27,18 @@
 <body>
 	<div class="container">
 	<h1>Servo em <span id="valor">90</span> graus</h1>
-	<svg width="600" height="300" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+	<svg width="600" height="350" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
 	 <g>
 	  <title>Triângulo</title>
-	  <polygon stroke-width="5" stroke="#000000" points="374,122 276,178 276,65 374,122" fill="green" id="triangulo"/>
+	  <circle cx="300" cy="250" r="50" stroke="black" stroke-width="5" fill="red" />
+	  <polygon stroke-width="5" stroke="#000000" points="250,250 300,050 350,250" fill="green" id="triangulo"/>
 	 </g>
 	</svg>
 	<br/>
 	<button class="btn btn-lg btn-primary" onclick="teste()">Teste</button>
 	</div>
 	<script>
-		var pontos = ["374,122", "276,178", "276,65"];
+		var pontos = ["250,250", "300,050", "350,250"];
 		
 		function teste() {
 			mudaPonto('200,50');
@@ -45,13 +46,13 @@
 		
 		//altera o terceiro valor do arrray para o valor informado
 		function mudaPonto(pontoNovo) {
-			pontos[2] = pontoNovo;
+			pontos[1] = pontoNovo;
 		    document.getElementById('triangulo').setAttribute('points', montaString(pontos));
 		}
 		
 		//concatena as coordenadas do triangulo para incluir no atributo "points"
 		function montaString(p) {
-			return "" + p[0] + " " + p[1] + " " + p[2] + " " + p[0]
+			return "" + p[0] + " " + p[1] + " " + p[2]
 		}
 	</script>
 </body>
