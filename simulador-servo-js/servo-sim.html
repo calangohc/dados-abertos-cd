@@ -41,11 +41,12 @@
 	<br/>
 	x = <span id="x">300</span>; y = <span id="y">050</span>; sen(rad) = <span id="sen">0</span>; cos = <span id="cos">1</span>; rad = <span id="rad">1</span>
 	<br/>
-	Triângulo = <span id="pontos"></span>
+	Triângulo = <span id="pontos">250,250 300,050 350,250</span>
 	</div>
 	<script>
 		var pontos = ["250,250", "300,050", "350,250"];
-		var raio = 200;
+		var raio_externo = 200;
+		var raio_interno = 50;
 		var centro_x = 300;
 		var centro_y = 250;
 		
@@ -60,28 +61,25 @@
 			mostra('rad', rad);
 			var sen = Math.sin(rad);
 			mostra('sen', sen);
-			var y = centro_y - sen * raio;
+			var y = centro_y - sen * raio_externo;
 			mostra('y', y);
 			var cos = Math.cos(rad)
 			mostra('cos', cos);
-			var x = cos * raio + centro_x;
+			var x = cos * raio_externo + centro_x;
 			mostra('x', x);
-			var pontoNovo = x + ',' + y;
-			mudaPonto(pontoNovo);
+			var ya = centro_y - cos * raio_interno;
+			var yb = centro_y + cos * raio_interno;
+			var xa = centro_x - sen * raio_interno;
+			var xb = centro_x + sen * raio_interno;
+			mudaPonto(x, y, xa, ya, xb, yb);
 		}
 		
 		//altera o segundo valor do array para o valor informado
-		function mudaPonto(pontoNovo) {
-			pontos[1] = pontoNovo;
-			var stringPontos = montaString(pontos);
+		function mudaPonto(x, y, xa, ya, xb, yb) {
+			var stringPontos = xa + "," + ya + " " + x + "," + y + " " + xb + "," + yb;
 		    document.getElementById('triangulo').setAttribute('points', stringPontos);
 			mostra('pontos', stringPontos);
 		}
-		
-		//concatena as coordenadas do triangulo para incluir no atributo "points"
-		function montaString(p) {
-			return "" + p[0] + " " + p[1] + " " + p[2]
-		}
-	</script>
+		</script>
 </body>
 </html>
