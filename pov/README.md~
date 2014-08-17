@@ -1,0 +1,10 @@
+dados-abertos-cd/pov
+================
+
+Projeto para criação de um display que utilize o princípio da persistência retiniana (ou persistência de visão ou POV da sigla em inglês, persistence of vision).
+
+O Projeto faz parte da iniciativa Arduino para a Cidadania do Laboratório Hacker da Câmara dos Deputados do Brasil.
+
+O display POV é composto por duas partes: um controlador de motor de passo e uma barra de LED's.
+
+O controlador de motor de passo é baseado em um chip L298N. As quatro saídas deste chip são conectados às quatro entradas do motor de passo bipolar utilizado no projeto. O motor de passo foi reaproveitado de sucata, 
