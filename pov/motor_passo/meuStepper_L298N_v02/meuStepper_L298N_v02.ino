@@ -1,6 +1,7 @@
 //Controlador de motor de passo
 //Autor: Otavio Carneiro dos Santos
 //Licenca: MIT (faca o que quiser!)
+//v2.0 = pausas em microssegundos
 //v1.1 = dois LED's para debug: um para cada direcao
 //v1.0 = Explicitamente manda sinal LOW para todos os polos quando deve ficar parado
 //v0.8 = Controla a direcao e velocidade a partir da leitura do potenciometro
@@ -18,10 +19,14 @@ const int ledDebugIda = 5; //pino PWM com um resistor de 300R e um LED vermelho
 const int ledDebugVolta = 6; //LED verde
 const int buzzer = 3; ////pino PWM com um resistor de 300R e um piezo buzzer
 
+//minimo e maximo para pausa em microssegundos (1 milionesimo de seg)
+const int MIN_MICRO_PAUSA = 300;
+const int MAX_MICRO_PAUSA = 20000;
+
 const boolean DEBUG = false;
 
 //delay entre os sinais
-int pausa = 200; //min:2, max:20 (mais que isso trepida demais)
+int pausa = MAX_MICRO_PAUSA;
 
 int valorPot = 0;
 int valorDebug = 0;
@@ -49,7 +54,7 @@ void loop() {
       analogWrite(ledDebugVolta,LOW); 
     } else {
       //em modo debug, a pausa eh fixa
-      pausa = map(valorPot,0,499,2,20);
+      pausa = map(valorPot,0,499,MIN_MICRO_PAUSA,MAX_MICRO_PAUSA);
     }
      frente(); //4-2-3-1
   //se estiver acima da metade, vai para tras
@@ -59,7 +64,7 @@ void loop() {
       analogWrite(ledDebugIda,LOW); 
       analogWrite(ledDebugVolta,valorDebug); 
     } else {
-      pausa = map(valorPot,525,1023,20,2);
+      pausa = map(valorPot,525,1023,MAX_MICRO_PAUSA,MIN_MICRO_PAUSA);
     }
     tras();  //1-3-2-4
   //no meio, ha uma faixa de leituras em que o motor fica parado
@@ -103,7 +108,7 @@ void enviaSinal1() {
   digitalWrite(sinal3, LOW);
   digitalWrite(sinal4, LOW);  
   digitalWrite(sinal1, HIGH);
-  delay(pausa);
+  delayMicroseconds(pausa);
 }
 
 void enviaSinal2() {
@@ -112,7 +117,7 @@ void enviaSinal2() {
   digitalWrite(sinal3, LOW);
   digitalWrite(sinal4, LOW);  
   digitalWrite(sinal2, HIGH);
-  delay(pausa);
+  delayMicroseconds(pausa);
 }
 
 void enviaSinal3() {
@@ -121,7 +126,7 @@ void enviaSinal3() {
   digitalWrite(sinal2, LOW);
   digitalWrite(sinal4, LOW);  
   digitalWrite(sinal3, HIGH);
-  delay(pausa);
+  delayMicroseconds(pausa);
 }
 
 void enviaSinal4() {
@@ -130,7 +135,7 @@ void enviaSinal4() {
   digitalWrite(sinal2, LOW);
   digitalWrite(sinal3, LOW);
   digitalWrite(sinal4, HIGH);  
-  delay(pausa);
+  delayMicroseconds(pausa);
 }
 
 //envia LOW para todos os sinais
