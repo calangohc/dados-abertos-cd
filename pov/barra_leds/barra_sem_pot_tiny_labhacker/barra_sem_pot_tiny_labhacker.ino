@@ -1,6 +1,6 @@
-//Barra sem pot
+//Barra sem pot em ATTiny85. Mensagem: LABHacker. Usar ATTiny85 1MHz.
 //Ilumina uma barra de LED's (B210SR) para testes, sem potenciometro para controle
-//Utiliza um shift register (74HC595 ou 595)
+//Utiliza um shift register (74HC595 ou 595). 
 //Licenca: Apache 2.0 (use como quiser)
 //http://www.apache.org/licenses/LICENSE-2.0.html
 //Copyright 2014 Otavio Carneiro (carneiro.blog.br)
@@ -39,7 +39,13 @@ void setup() {
 
 void loop() {
   //int pausa = 2;  //200 eh lento demais... 50 tb... 20 idem... 2 tambem
-  int micro_pausa = 15; //300 eh muito
+  int micro_pausa = 80; //300 eh muito. 15 funciona em 1MHz. 
+                       //2 em 8MHz fica estreito e palido
+                       //8 em 8MHz ainda eh estreito e palido. 40 tb
+                       //2 em 1MHz fica largo e falhado. 1 tb
+                       //      8MHz exige maior voltagem
+                       
+                       
   for(int saida = 0; saida <= qtde_valores; saida++) {
     acendeBarra(valores[saida]);
     //delay(pausa);

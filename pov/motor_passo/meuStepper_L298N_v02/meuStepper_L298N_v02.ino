@@ -1,6 +1,7 @@
 //Controlador de motor de passo
 //Autor: Otavio Carneiro dos Santos
 //Licenca: MIT (faca o que quiser!)
+//v2.1 = comentarios para conexao ao L298N
 //v2.0 = pausas em microssegundos
 //v1.1 = dois LED's para debug: um para cada direcao
 //v1.0 = Explicitamente manda sinal LOW para todos os polos quando deve ficar parado
@@ -9,10 +10,22 @@
 //v0.6 = Contem algoritmo para leitura do potenciometro e 
 //        //exibicao em um led para debug
 
-const int sinal1 = 8;
-const int sinal2 = 9;
-const int sinal3 = 10;
-const int sinal4 = 11;
+//pino 1 do L298N (curr sens A) se conecta ao GRN com um resistor de 2R
+//pino 2 do L298N (output 1) se conecta ao pino 1 do motor de passo
+//pino 3 do L298N (output 2) se conecta ao pino 2 do motor de passo
+//pino 4 do L298N (supply voltage) se conecta a uma fonte de energia de maior potencia
+//                 a corrente neste pino alimentarah o motor de passo
+const int sinal1 = 8;  //pino 5 do L298N (input1)
+//pino 6 do L298N (enable A) se conecta aos 5V do Arduino
+const int sinal2 = 9;  //pino 7 do L298N (input2)
+//pino 8 do L298N (GND) se conecta ao GND do Arduino
+//pino 9 do L298N (logic supply voltage) se conecta aos 5V do Arduino
+const int sinal3 = 10; //pino 10 do L298N (input3)
+//pino 11 do L298N (enable B) se conecta aos 5V do Arduino
+const int sinal4 = 11; //pino 12 do L298N (input4)
+//pino 13 do L298N (output 3) se conecta ao pino 3 do motor de passo
+//pino 14 do L298N (output 4) se conecta ao pino 4 do motor de passo
+//pino 15 do L298N (curr sens B) se conecta ao GRN com um resistor de 2R
 
 const int potenciometro = A0; //pino de entrada analogica
 const int ledDebugIda = 5; //pino PWM com um resistor de 300R e um LED vermelho
